@@ -1,0 +1,58 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${SITE_TITLE} 404`}  description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+    <fieldset class="main">
+      <legend>
+        <h1>404</h1>
+      </legend>
+      <h1 class="caption">You WILL return to '/' and you will be happy.</h1>
+      <div class="link_container">
+        <a href="/">Back</a>
+      </div>
+      <div class="image_container">
+        <img
+          src="/etc/feraljak.png"
+          alt="You WILL do what the caption says and you will be happy."
+        />
+      </div>
+    </fieldset>
+	</body>
+</html>
+<style>
+.main {
+  margin: auto;
+  width: 80%;
+}
+.link_container {
+  width: 100%;
+  text-align: center;
+}
+a {
+  font-size: 2vw;
+}
+.caption {
+  text-align: center;
+  font-size: 4vw;
+}
+.image_container {
+  width: 40vw;
+  height: auto;
+  margin: auto;
+}
+.image_container > img {
+  width: 100%;
+  height: auto;
+}
+@media only screen and (max-width: 720px) {
+  a {
+    font-size: 4vw;
+  }
+}
+</style>

@@ -1,0 +1,131 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import AboutMe from '../components/AboutMe.astro';
+import Skills from '../components/Skills.astro';
+import Socials from '../components/Socials.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+    <div class="background">
+      <h1 class="background_text">WebDev</h1>
+      <h1 class="background_text">Fronten</h1>
+      <h1 class="background_text">Carm1ne</h1>
+    </div>
+    <div class="page_content">
+      <AboutMe />
+
+      <!-- Main block -->
+      <fieldset
+        x-data="{ openSkills: true, openPortfolio: false }"
+        class="main"
+      >
+        <legend>
+          <div class="nav_btns">
+            <button
+              @click="openSkills = true, openPortfolio = false"
+              x-bind:class="{ 'clicked': openSkills}"
+            >
+            Skills
+            </button>
+            <button
+              @click="openPortfolio = true, openSkills = false"
+              x-bind:class="{ 'clicked': openPortfolio }"
+              class="portfolio_btn"
+            >
+            Portfolio
+            </button>
+          </div>
+        </legend>
+        <div class="main_content_container">
+          <div x-show="openSkills">
+            <Skills />
+          </div>
+          <div x-show="openPortfolio" >
+            <Portfolio />
+          </div>
+        </div>
+      </fieldset>
+      <Socials />
+      <Footer />
+    </div>
+	</body>
+</html>
+<style>
+.background {
+  position: absolute;
+  width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  z-index: -1;
+}
+.background_text {
+  font-family: Audiowide;
+  font-size: 10.41vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  margin: 0;
+}
+.background h1:nth-of-type(2){
+  margin-top: 5vh;
+}
+.background h1:nth-of-type(3){
+  margin-top: 10vh;
+}
+.page_content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 82%;
+  margin: auto;
+  gap: 7vh;
+}
+.nav_btns > button {
+  font-size: 2.7vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.5vw;
+  text-transform: uppercase;
+  background: #3E3E3E;
+  border: 0;
+  color: white;
+}
+.nav_btns > button:hover,
+.clicked {
+  box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  background: white !important;
+  color: #3E3E3E !important;
+  border: 5px #3E3E3E solid !important;
+}
+.portfolio_btn {
+  margin-left: 2vw;
+}
+.main_content_container {
+  margin: auto;
+  width: 100%;
+}
+@media only screen and (max-width: 720px) {
+  .nav_btns > button {
+    font-size: 6vw
+  }
+  .background_text {
+    font-size: 20vw;
+  }
+}
+</style>

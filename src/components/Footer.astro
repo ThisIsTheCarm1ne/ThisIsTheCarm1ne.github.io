@@ -1,0 +1,34 @@
+<fieldset>
+  <legend>
+    <h1>Made by Carm1ne</h1>
+  </legend>
+  <p>With:</p>
+  <span class="sentence">
+    <h1>Astro</h1>
+    +
+    <h1>Alpine.js</h1>
+  </span>
+</fieldset>
+<style>
+fieldset {
+  margin-bottom: 5vh;
+}
+.sentence {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+p {
+  margin-bottom: 0;
+}
+.sentence > h1 {
+  font-size: 3vw;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+@media only screen and (max-width: 720px) {
+  .sentence > h1 {
+    font-size: 6vw;
+  }
+}
+</style>

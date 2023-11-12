@@ -1,0 +1,232 @@
+---
+const portfolioList: {
+  title: string,
+  imgSrc: string,
+  imgAlt: string,
+  iconSrc: string,
+  iconAlt: string,
+  description: string
+  link: string
+}[] = [
+  {
+    title: 'Tesk Task For a Frontend Position',
+    imgSrc: '',
+    imgAlt:'Check it out on my github :)',
+    iconSrc: '/icons/react.svg',
+    iconAlt: 'React.js',
+    description: 'This is just a test task that I was asked to do for a job(I got rejected :))',
+    link: 'https://github.com/ThisIsTheCarm1ne/Test_Task_For_Job'
+  },
+  {
+    title: 'Super Ultra Cool Shop',
+    imgSrc: '',
+    imgAlt:'Check it out on my github :)',
+    iconSrc: '/icons/nextjs.svg',
+    iconAlt: 'Next.js',
+    description: 'A shop, developed with shopify store-front API, nextjs, tailwindcss',
+    link: 'https://github.com/ThisIsTheCarm1ne/Supper-Ultra-Cool-Shop'
+  },
+  {
+    title: 'ConsumerBFF',
+    imgSrc: '',
+    imgAlt:'Check it out on my github :)',
+    iconSrc: '/icons/nextjs.svg',
+    iconAlt: 'Next.js',
+    description: 'An expense/income tracker that I wrote to learn Next.js and SupaBase',
+    link: 'https://github.com/ThisIsTheCarm1ne/ConsumerBFF'
+  },
+  {
+    title: 'Whiteboard',
+    imgSrc: '',
+    imgAlt:'Check it out on my github :)',
+    iconSrc: '/icons/react.svg',
+    iconAlt: 'React.js',
+    description: 'A todo list, but better. Developed with React.js, PocketBase and TailwindCSS',
+    link: 'https://github.com/ThisIsTheCarm1ne/Whiteboard'
+  },
+  {
+    title: 'translator-api',
+    imgSrc: '',
+    imgAlt:'Check it out on my github :)',
+    iconSrc: '/icons/js.svg',
+    iconAlt: 'JS',
+    description: 'Just a small API',
+    link: 'https://github.com/ThisIsTheCarm1ne/translator-api'
+  },
+  {
+    title: 'Thumbnails via bash',
+    imgSrc: '',
+    imgAlt:'Check it out on my github :)',
+    iconSrc: '/icons/bash.svg',
+    iconAlt: 'Bash',
+    description: 'I used this script on previous versions of my website to do the thumbnails faster',
+    link: 'https://github.com/ThisIsTheCarm1ne/Thumbnails-via-bash'
+  },
+  {
+    title: 'not_rusty-search-engine',
+    imgSrc: '',
+    imgAlt:'Check it out on my github :)',
+    iconSrc: '/icons/rust.svg',
+    iconAlt: 'Rust',
+    description: 'Basic search engine written in rust',
+    link: 'https://github.com/ThisIsTheCarm1ne/not_rusty-search-engine'
+  },
+  {
+    title: 'Basic-Search-engine-in-GO',
+    imgSrc: '',
+    imgAlt:'Check it out on my github :)',
+    iconSrc: '/icons/go_lang.svg',
+    iconAlt: 'Go',
+    description: 'basic search engine in Go',
+    link: 'https://github.com/ThisIsTheCarm1ne/Basic-Search-engine-in-GO'
+  },
+  {
+    title: 'Social-messaging-app',
+    imgSrc: '',
+    imgAlt:'Check it out on my github :)',
+    iconSrc: '/icons/go_lang.svg',
+    iconAlt: 'Go',
+    description: 'This is my school project from the last year of highschool. I got C for it :(',
+    link: 'https://github.com/ThisIsTheCarm1ne/Social-messaging-app'
+  },
+];
+
+function truncate(str: string){
+ return (str.length > 13) ? str.slice(0, 12) + '...' : str;
+};
+---
+
+<div
+  class="portfolio_section"
+  x-data=`{ title: '', imgSrc: '', imgAlt: '', iconSrc: '', iconAlt: '', description: '', link: '' }`
+> 
+  <div class="portfolio_main_content">
+    <div
+      class="portfolio_item_preview"
+      x-show="imgSrc.length !== 0">
+      <img
+        x-bind:src="imgSrc"
+        x-bind:alt="imgAlt"
+      />
+    </div>
+    <div class="portfolio_item_description">
+      <h2 x-text="title"></h2>
+      <p x-text="description"></p>
+    </div>
+  </div>
+  <div class="portfolio_item_list">
+  {portfolioList.map((item) => (
+    <button
+      class="portfolio_item"
+      @click=`title = '${item.title}', imgSrc = '${item.imgSrc}', imgAlt = '${item.imgAlt}', description = '${item.description}'`
+    >
+      <p>{truncate(item.title)}</p>
+      <div class="icon_container">
+        <img
+           src={item.iconSrc}
+           alt={item.iconAlt}
+         />
+      </div>
+    </button>
+    ))}
+  </div>
+</div>
+
+<style>
+.portfolio_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.portfolio_main_content {
+  width: 57%;
+  text-align: center;
+  border: 4px solid #B2B2B2;
+}
+.portfolio_item_preview {
+  padding: 2em;
+  border-bottom: 4px solid #B2B2B2;
+}
+.portfolio_item_list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  height: 55vh;
+  width: 40%;
+}
+.portfolio_item_description {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.portfolio_item_description > h2 {
+  font-size: 2.5vw;
+}
+.portfolio_item_description > p {
+  font-size: 1vw;
+}
+.portfolio_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  border-top: 2px solid #B2B2B2;
+  border-bottom: 2px solid #B2B2B2;
+  border-left: 0;
+  border-right: 0;
+  font-size:  2.5vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 4.8px;
+  text-transform: uppercase;
+  background: white;
+  width: 100%;
+  cursor: pointer;
+}
+.portfolio_item > p {
+  margin-right: 1vw;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+}
+.icon_container {
+  border-left: 2px solid #B2B2B2;
+  display: flex;
+  justify-content: center;
+  width: 3.75vw;
+  height: 100%;
+}
+.portfolio_item:hover {
+  border-top: 4px solid #B2B2B2;
+  border-bottom: 4px solid #B2B2B2;
+}
+@media only screen and (max-width: 720px) {
+  .portfolio_section {
+    align-items: center;
+    flex-direction: column;
+  }
+  .portfolio_main_content {
+    width: 90%;
+    margin-bottom: 3vh;
+  }
+  .portfolio_item_description > h2 {
+    font-size: 5vw;
+  }
+  .portfolio_item_description > p {
+    font-size: 3vw;
+  }
+  .portfolio_item_list {
+    width: 90%;
+  }
+  .portfolio_item {
+    width: 100%;
+    font-size:  5vw;
+  }
+  .icon_container {
+    width: 7vw;
+  }
+  .icon_container > img {
+    height: auto;
+    width: 100%;
+  }
+}
+</style>

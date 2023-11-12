@@ -1,0 +1,67 @@
+---
+const socialsList: {title: string, imgSrc: string, imgAlt: string, href: string}[] = [
+  {title: 'GitHub', imgSrc: '/icons/github_logo.svg', imgAlt: 'GitHub', href: 'https://github.com/ThisIsTheCarm1ne'},
+  {title: 'X(Twitter)', imgSrc: '/icons/x.svg', imgAlt: 'X', href: 'https://twitter.com/Real_Carm1ne'},
+  {title: 'LeetCode', imgSrc: '/icons/leetcode_logo.svg', imgAlt: 'LeetCode', href: 'https://leetcode.com/ThisIsTheCarm1ne'},
+  {title: 'Fiverr', imgSrc: '/icons/fiverr_logo.svg', imgAlt: 'Fiverr', href: 'https://www.fiverr.com/oliver_wit'},
+]
+---
+<fieldset class="social_links_container">
+  <legend>
+    <h1>Social-media</h1>
+  </legend>
+  <div class="social_links_list">
+    {socialsList.map((social) => (
+    <div class="social_element">
+      <img 
+        src={social.imgSrc}
+        alt={social.imgAlt}
+      >
+      <a href={social.href}>{social.title}</a>
+    </div>
+    ))}
+    <div class="social_element">
+      <img 
+        src="/icons/mail.svg"
+        alt="You've got mail"
+      >
+      <p>CarM1Neees@protonmail.com</p>
+    </div>
+  </div>
+</fieldset>
+<style>
+.social_links_container {
+  width: 50%;
+}
+.social_links_list {
+  font-size: 1.6vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+}
+.social_element {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  display: flex;
+  gap: 0.5vw;
+}
+.social_element > img {
+  width: 1.875vw;
+  height: auto;
+}
+.social_element > p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+@media only screen and (max-width: 720px) {
+  .social_links_container {
+  }
+  .social_links_list {
+    font-size: 5vw;
+  }
+  .social_element > img {
+    width: 5vw;
+  }
+}
+</style>

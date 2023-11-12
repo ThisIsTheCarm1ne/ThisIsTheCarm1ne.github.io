@@ -1,0 +1,117 @@
+---
+const skillsList: {id: number, title: string, imgSrc: string, imgAlt: string}[] = [
+  {id: 0, title: 'TailwindCSS', imgSrc: '/icons/tailwindcss.svg', imgAlt:'IsItActuallyBetterThanCSS?'},
+  {id: 1, title: 'Unit Testing', imgSrc: '/icons/jest.svg', imgAlt:'1,2,3 testing...'},
+  {id: 2, title: 'Wordpress', imgSrc: '/icons/wordpress.svg', imgAlt:'Wordpress'},
+  {id: 3, title: 'TypeScript', imgSrc: '/icons/ts.svg', imgAlt:'But the type system is so good'},
+  {id: 4, title: 'JavaScript', imgSrc: '/icons/js.svg', imgAlt:''},
+  {id: 5, title: 'MongoDB', imgSrc: '/icons/mongodb.svg', imgAlt:'[Object Object]'},
+  {id: 6, title: 'React.JS', imgSrc: '/icons/react.svg', imgAlt:''},
+  {id: 7, title: 'Node.JS', imgSrc: '/icons/nodejs.svg', imgAlt:''},
+  {id: 8, title: 'Go Lang', imgSrc: '/icons/go_lang.svg', imgAlt:''},
+  {id: 9, title: 'Next.JS', imgSrc: '/icons/nextjs.svg', imgAlt:''},
+  {id: 10, title: 'SQLite', imgSrc: '/icons/sqlite.svg', imgAlt:''},
+  {id: 11, title: 'Vue.JS', imgSrc: '/icons/vuejs.svg', imgAlt:''},
+  {id: 12, title: 'HTML', imgSrc: '/icons/html.svg', imgAlt:'The best programming language'},
+  {id: 13, title: 'Figma', imgSrc: '/icons/figma.svg', imgAlt:''},
+  {id: 14, title: 'Linux', imgSrc: '/icons/linux.svg', imgAlt:'Acshtually its ganoo+linux'},
+  {id: 15, title: 'Nuxt', imgSrc: '/icons/nuxtjs.svg', imgAlt:''},
+  {id: 16, title: 'PHP', imgSrc: '/icons/php.svg', imgAlt:'Guys, the php is dead, fr this time!'},
+  {id: 17, title: 'CSS', imgSrc: '/icons/css.svg', imgAlt:'CSS supremacy'},
+  {id: 18, title: 'Git', imgSrc: '/icons/git.svg', imgAlt:'Microsoft owns your code :)'},
+];
+---
+
+<div class="skills_list">
+  {skillsList.map((skill) => (
+  <div class="skill_container" style=`--order: ${skill.id};`>
+    <div class="skill_icon_container">
+      <img
+        src={skill.imgSrc}
+        alt={skill.imgAlt}
+        class="skill_icon"
+      />
+    </div>
+    <p class="skill_title">{skill.title}</p>
+  </div>
+  ))}
+</div>
+<style>
+.skills_list {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+}
+.skills_list .skill_container {
+  opacity: 0;
+  animation: stagger ease-in 0.2s forwards 1;
+  animation-delay: calc(var(--order) * 0.075s);
+}
+.skill_icon_container {
+  width: 3.75vw;
+  height: 3.75vw;
+  display: flex;
+  justify-content: center;
+}
+.skill_icon {
+  width: 100%;
+  height: auto;
+}
+.skill_title {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 3.33vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  margin-top: 1vh;
+}
+/* Animations */
+@keyframes stagger {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes stagger_responsive {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+/* Responsive */
+@media only screen and (max-width: 720px) {
+  .skills_list {
+    flex-direction: column;
+  }
+  .skill_container {
+    display: flex;
+    gap: 8px;
+  }
+  .skills_list .skill_container {
+    animation: stagger_responsive ease-in 0.2s forwards 1;
+    animation-delay: calc(var(--order) * 0.075s);
+  }
+  .skill_icon_container {
+    width: 11vw;
+    height: 11vw;
+  }
+  .skill_title {
+    writing-mode: horizontal-tb;
+    margin-top: 0;
+    font-size: 10vw;
+  }
+}
+</style>
