@@ -19,7 +19,7 @@ const portfolioList: {
   },
   {
     title: 'Super Ultra Cool Shop',
-    imgSrc: '',
+    imgSrc: '/previews/Super_Ultra_Cool_Shop.webp',
     imgAlt:'Check it out on my github :)',
     iconSrc: '/icons/nextjs.svg',
     iconAlt: 'Next.js',
@@ -28,7 +28,7 @@ const portfolioList: {
   },
   {
     title: 'ConsumerBFF',
-    imgSrc: '',
+    imgSrc: '/previews/ConsumerBFF.webp',
     imgAlt:'Check it out on my github :)',
     iconSrc: '/icons/nextjs.svg',
     iconAlt: 'Next.js',
@@ -98,19 +98,25 @@ function truncate(str: string){
 
 <div
   class="portfolio_section"
-  x-data=`{ title: '', imgSrc: '', imgAlt: '', iconSrc: '', iconAlt: '', description: '', link: '' }`
+  x-data=`{ title: 'Pick an item from list ->', imgSrc: '', imgAlt: '', description: '', link: '' }`
 > 
   <div class="portfolio_main_content">
     <div
       class="portfolio_item_preview"
       x-show="imgSrc.length !== 0">
-      <img
-        x-bind:src="imgSrc"
-        x-bind:alt="imgAlt"
-      />
+      <div class="portfolio_item_preview_container">
+        <img
+          x-bind:src="imgSrc"
+          x-bind:alt="imgAlt"
+        />
+      </div>
     </div>
     <div class="portfolio_item_description">
-      <h2 x-text="title"></h2>
+      <a 
+        x-bind:href="link"
+      >
+        <h2 x-text="title"></h2>
+      </a>
       <p x-text="description"></p>
     </div>
   </div>
@@ -118,7 +124,7 @@ function truncate(str: string){
   {portfolioList.map((item) => (
     <button
       class="portfolio_item"
-      @click=`title = '${item.title}', imgSrc = '${item.imgSrc}', imgAlt = '${item.imgAlt}', description = '${item.description}'`
+      @click=`title = '${item.title}', imgSrc = '${item.imgSrc}', imgAlt = '${item.imgAlt}', description = '${item.description}', link='${item.link}'`
     >
       <p>{truncate(item.title)}</p>
       <div class="icon_container">
@@ -146,6 +152,16 @@ function truncate(str: string){
 .portfolio_item_preview {
   padding: 2em;
   border-bottom: 4px solid #B2B2B2;
+  display: flex;
+  justify-content: center;
+}
+.portfolio_item_preview_container {
+  width: 35vw;
+  height: auto;
+}
+.portfolio_item_preview_container img {
+  width: 100%;
+  height: auto;
 }
 .portfolio_item_list {
   display: flex;
@@ -159,7 +175,7 @@ function truncate(str: string){
   padding-left: 1em;
   padding-right: 1em;
 }
-.portfolio_item_description > h2 {
+.portfolio_item_description a h2{
   font-size: 2.5vw;
 }
 .portfolio_item_description > p {
@@ -208,7 +224,13 @@ function truncate(str: string){
     width: 90%;
     margin-bottom: 3vh;
   }
-  .portfolio_item_description > h2 {
+  .portfolio_item_preview {
+    padding: 1em;
+  }
+  .portfolio_item_preview_container {
+    width: 60vw;
+  }
+  .portfolio_item_description a h2{
     font-size: 5vw;
   }
   .portfolio_item_description > p {
